@@ -7,11 +7,11 @@
 
 1) Node 및 npm 설치 : [https://nodejs.org/ko](https://nodejs.org/ko)
 
-![Untitled](Chapter%2001%20dc521b6777fb4baa8f69d206940afced/Untitled.png)
+![Untitled](./chapter01_sangha_Img/Untitled.png)
 
 2) 설치 확인
 
-![Untitled](Chapter%2001%20dc521b6777fb4baa8f69d206940afced/Untitled%201.png)
+![Untitled](./chapter01_sangha_Img/Untitled%201.png)
 
 node -v		: Node 버전 확인
 
@@ -19,7 +19,7 @@ npm -v		: npm 버전 확인
 
 3) Node 프로젝트 시작
 
-![npm init -y](Chapter%2001%20dc521b6777fb4baa8f69d206940afced/Untitled%202.png)
+![npm init -y](./chapter01_sangha_Img/Untitled%202.png)
 
 npm init -y
 
@@ -39,7 +39,7 @@ npm init -y
 
 4) Typescript 프로젝트 시작
 
-![npm i typescript](Chapter%2001%20dc521b6777fb4baa8f69d206940afced/Untitled%203.png)
+![npm i typescript](./chapter01_sangha_Img/Untitled%203.png)
 
 npm i typescript
 
@@ -57,7 +57,7 @@ npm i typescript
 
 5) tsc 시작
 
-![npx tsc --init](Chapter%2001%20dc521b6777fb4baa8f69d206940afced/Untitled%204.png)
+![npx tsc --init](./chapter01_sangha_Img/Untitled%204.png)
 
 npx tsc --init
 
@@ -72,7 +72,7 @@ npx tsc --init
 
 6) 타입스크립트 코드 분석
 
-![Untitled](Chapter%2001%20dc521b6777fb4baa8f69d206940afced/Untitled%205.png)
+![Untitled](./chapter01_sangha_Img/Untitled%205.png)
 
 npx tsc		: 전체 코드 분석
 
