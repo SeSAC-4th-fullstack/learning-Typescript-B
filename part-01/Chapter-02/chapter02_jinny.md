@@ -5,15 +5,15 @@
 여기서 형태는 **값에 존재하는 속성과 메서드** 그리고 내장되어 있는 `typeof` **연산자가 설명하는 것**을 의미한다.
 
 - 타입스크립트의 가장 기본적인 타입은 자바스크립트의 일곱가지 기본 원시타입(primitive type)과 동일하다.
-  | type      | ex                  |
+  | type | ex |
   | --------- | ------------------- |
-  | null      | null;               |
-  | undefined | undefined;          |
-  | boolean   | true 혹은 false     |
-  | string    | “Louise”;           |
-  | number    | 1337;               |
-  | bigint    | 1337n;              |
-  | symbol    | Symbol(”Franklin”); |
+  | null | null; |
+  | undefined | undefined; |
+  | boolean | true 혹은 false |
+  | string | “Louise”; |
+  | number | 1337; |
+  | bigint | 1337n; |
+  | symbol | Symbol(”Franklin”); |
 
 1. 타입 시스템
 
@@ -223,12 +223,12 @@ export const shared = "Cher";
 
 ```tsx
 // a.ts
-export const shared = "Cher";
+const shared = "Cher";
 //           ~~~~~~
 // Error: Cannot redeclare block-scoped variable 'shared'.
 
 // b.ts
-export const shared = "Cher";
+const shared = "Cher";
 //           ~~~~~~
 // Error: Cannot redeclare block-scoped variable 'shared'.
 ```
