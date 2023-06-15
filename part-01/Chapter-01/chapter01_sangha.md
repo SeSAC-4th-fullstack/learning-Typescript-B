@@ -3,77 +3,54 @@
 > 자바스크립트에서 타입스크립트로
 > 
 
-## 1. Typescript 시작
+# 1. Typescript 시작
 
-1) Node 및 npm 설치 : [https://nodejs.org/ko](https://nodejs.org/ko)
+---
 
-![Untitled](./chapter01_sangha_Img/Untitled.png)
+### 1) Node 및 npm 설치 : [https://nodejs.org/ko](https://nodejs.org/ko)
 
-2) 설치 확인
+### 2) 설치 확인
 
-![Untitled](./chapter01_sangha_Img/Untitled%201.png)
+```jsx
+// Node 버전 확인
+node -v
 
-node -v		: Node 버전 확인
+// npm 버전확인
+npm -v
+```
 
-npm -v		: npm 버전 확인
+### 3) Node 프로젝트 시작
 
-3) Node 프로젝트 시작
+```jsx
+npm init -y 
+```
 
-![npm init -y](./chapter01_sangha_Img/Untitled%202.png)
+- 해당 디렉토리가 Node 프로젝트로 전환된다.
+- package.json 생성 : Node 프로젝트의 설정 정보가 담겨있다.
 
-npm init -y
+### 4) Typescript 프로젝트 시작
 
-<aside>
-💡 **npm init -y**
-
-: package.json 파일이 생성된다.
-
-</aside>
-
-<aside>
-💡 **package.json**
-
-: node 프로젝트의 설정 정보가 담긴 파일
-
-</aside>
-
-4) Typescript 프로젝트 시작
-
-![npm i typescript](./chapter01_sangha_Img/Untitled%203.png)
-
+```jsx
 npm i typescript
+```
 
-<aside>
-💡 **node_modules**
+- node_modules 생성 : Typescript의 라이브러리가 있는 디렉토리
+- package-lock.json 생성
 
-: typescript 라이브러리가 있는 디렉토리
+### 5) tsc 시작
 
-</aside>
+```jsx
+npm tsc --init
+```
 
-<aside>
-💡 **package-lock.json**
+- tsconfig.json 생성 : Typescript가 코드를 분석할 때 사용하는 설정 파일
 
-</aside>
+### 6) 타입스크립트 코드 분석
 
-5) tsc 시작
+```jsx
+// 디렉토리 전체 ts 파일 분석
+npx tsc
 
-![npx tsc --init](./chapter01_sangha_Img/Untitled%204.png)
-
-npx tsc --init
-
-<aside>
-💡 **tsconfig.json**
-
-: npx tsc –-init으로 생성된다.
-
-: Typescript가 코드를 분석할 때 사용하는 설정파일
-
-</aside>
-
-6) 타입스크립트 코드 분석
-
-![Untitled](./chapter01_sangha_Img/Untitled%205.png)
-
-npx tsc		: 전체 코드 분석
-
-npx tsc (파일)	: 특정파일 코드 분석
+// 특정 파일 코드 분석
+npx tsc 파일명
+```
