@@ -752,16 +752,16 @@ type DataEntryGetters = {
 
 `keyof typeof` 키워드를 사용해서 객체의 타입에서 매핑된 타입을 만드는 것도 가능하다
 
-```
+```ts
 const config = {
-    location : 'unknown',
-    name : 'anonymous',
-    year : 0
+  location: 'unknown',
+  name: 'anonymous',
+  year: 0,
 };
 
 type LazyValues = {
-    [ K in keyof typeof config as `${K}Lazy`] : () => Promise<typeof config[K]>
-}
+  [K in keyof typeof config as `${K}Lazy`]: () => Promise<(typeof config)[K]>;
+};
 
 // 다음과 같음
 
@@ -771,12 +771,11 @@ type LazyValues = {
 //     yearLazy: () => Promise<number>;
 // }
 
-async function withLazyValues(configGetter : LazyValues) {
-    await configGetter.locationLazy();
+async function withLazyValues(configGetter: LazyValues) {
+  await configGetter.locationLazy();
 
-    // 존재하지 않는 속성
-    await configGetter.missingLazy();
-
+  // 존재하지 않는 속성
+  await configGetter.missingLazy();
 }
 ```
 
