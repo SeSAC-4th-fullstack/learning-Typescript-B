@@ -4,17 +4,21 @@
 
 > 이번장에서 사용되게 될 개념은 제네릭과 마찬가지로 과도하게 사용되면 읽기 어려울 수 있으니 유념하자.
 
+## Table of Contents
+
+---
+
 ## 매핑된 타입
 
 ---
 
-타입스크립트는 다른 타입의 속성을 기반으로 새로운 타입을 생성하는 구문을 제공하는데, 이가 하나의 타입에서 다른 타입으로 `매핑 ( Mapping )` 한다. 타입스크랍트의 `매핑된 타입 ( Mapped type )` 은 다른 타입을 가져와서 `해당 타입의 각 속성에 대해 일부 작업을 수행`하는 타입이다.
+타입스크립트는 다른 타입의 속성을 기반으로 새로운 타입을 생성하는 구문을 제공하는데, 이가 하나의 타입에서 다른 타입으로 `매핑 ( Mapping )` 한다. 타입스크립트의 `매핑된 타입 ( Mapped type )` 은 다른 타입을 가져와서 `**해당 타입의 각 속성에 대해 일부 작업을 수행**`하는 타입이다.
 
 매핑된 타입은 키 집합의 각 키에 대한 새로운 속성을 만들어 새로운 타입을 생성한다.
 
-인덱스 시그니처와 유사한 구문을 사용하지만, [ i : string ] 과 같이 : 를 사용한 정적 키 타입을 사용하는 대신
+인덱스 시그니처와 유사한 구문을 사용하지만, `[ i : string ]` 과 같이 `:` 를 사용한 정적 키 타입을 사용하는 대신
 
-`[ K in OriginalType ]` 과 같이 in 을 사용해 `다른 타입으로 부터 계산된 타입`을 사용한다.
+`[ K in OriginalType ]` 과 같이 `in` 을 사용해 `**다른 타입으로 부터 계산된 타입**`을 사용한다.
 
 ```tsx
 type Animals = 'alligator' | 'baboon' | 'cat';
@@ -32,7 +36,7 @@ type AnimalCounts = {
 // }
 ```
 
-존재하는 유니언 리터럴을 기반으로 하는 매핑된 타입은 큰 인터페이스를 ㄱ선언하는 공간을 절약하는 편리한 방법이며, 타입은 다른 타입에 대해 작동하고, 멤버에서 제한자를 추가하거나 제거할 수 있을때 가장 유용해진다.
+존재하는 유니언 리터럴을 기반으로 하는 매핑된 타입은 큰 인터페이스를 `선언하는 공간을 절약`하는 편리한 방법이며, 타입은 다른 타입에 대해 작동하고, `멤버에서 제한자를 추가하거나 제거할 수 있을때 가장 유용해진다.`
 
 ---
 
@@ -89,7 +93,7 @@ type NullableBirdVariants = {
 };
 ```
 
-각 필드를 원본타입에서 임이의 수의 다른 방법으로 어렵게 복사하는 대신, 매핑된 타입은 멤버 집합을 한 번 정의하고 필요한 만큼 여러번 새로운 버전을 다시 생성할 수 있다.
+각 필드를 원본타입에서 임의의 수의 다른 방법으로 어렵게 복사하는 대신, 매핑 된 타입은 멤버 집합을 한 번 정의하고 필요한 만큼 여러번 새로운 버전을 다시 생성할 수 있다.
 
 ## 매핑된 타입과 시그니처
 
@@ -97,10 +101,10 @@ type NullableBirdVariants = {
 
 타입스크립트가 인터페이스 멤버를 함수로 선언하는 두가지 방법
 
-- `member () : void 같은 메서드 구문` : 인터페이스의 멤버가 객체의 멤버로 호출되도록 의도된 함수 선언
-- `member : () ⇒ void 같은 속성 구문` : 인터페이스의 멤버가 독립 실행형 함수와 같다고 선언
+- `member () : void 같은 **메서드 구문**` : 인터페이스의 멤버가 객체의 멤버로 호출되도록 의도된 함수 선언
+- `member : () ⇒ void 같은 **속성 구문**` : 인터페이스의 멤버가 독립 실행형 함수와 같다고 선언
 
-`하지만, 매핑된 타입은 객체 타입의 메서드와 속성 구문을 구분하지 않고, 메서드를 원래 타입의 속성으로 구분한다.`
+`하지만, 매핑된 타입은 객체 타입의 메서드와 속성 구문을 구분하지 않고, **메서드를 원래 타입의 속성으로 구분**한다.`
 
 ```tsx
 interface Researcher {
@@ -163,7 +167,7 @@ type OptionalEnvironmentalist = {
   name?: string | undefined;
 };
 
-// Mapped readonly and optionally
+// Mapped optional readonly
 
 type OptionalReadonlyEnvironmentalist = {
   [K in keyof ReadonlyEnvironmentalist]?: ReadonlyEnvironmentalist[K];
@@ -238,11 +242,11 @@ type RequiredWritableConservationist = {
 
 ### `제네릭 매핑된 타입`
 
-매핑된 타입은 제네릭과 결합해 단일 타입의 매핑을 다른 타입에서 재사용할 수 있을 때 완전한다.
+매핑 된 타입은 제네릭과 결합해 단일 타입의 매핑을 다른 타입에서 재사용할 수 있을 때 완전한다.
 
-매핑된 타입은 매핑된 타입 자첼의 타입 매개변수를 모함해 `keyof 로 해당 스코프에 있는 모든 타입 이름에 접근`할 수 있다.
+매핑 된 타입은 매핑 된 타입 자체의 타입 매개변수를 모함해 `keyof 로 해당 스코프에 있는 모든 타입 이름에 접근`할 수 있다.
 
-제네릭 매핑된 타입은 데이터가 애플리케이션을 통해 흐를때 데이터가 어떻게 변형되는지 나타낼때 유용하다.
+`제네릭 매핑된 타입`은 데이터가 애플리케이션을 통해 흐를때 데이터가 어떻게 변형되는지 나타낼때 유용하다.
 
 예를들어, 애플리케이션 영역이 기존 타입의 값을 가져올 수 는 있지만, 데이터를 수정하는 것은 허용하지 않는 것이 좋다.
 
@@ -282,10 +286,10 @@ type OptionalGenustData = MakeOptional<GenusData>;
 
 // 다음과 같음
 
-// type OptionalGenustData = {
-//     family?: string | undefined;
-//     name?: string | undefined;
-// }
+type OptionalGenustData = {
+  family?: string | undefined;
+  name?: string | undefined;
+};
 
 function createGenusData(overrides?: MakeOptional<GenusData>): GenusData {
   return {
@@ -295,6 +299,7 @@ function createGenusData(overrides?: MakeOptional<GenusData>): GenusData {
   };
 }
 
+// Utility 타입인 Partial<T> 와 동작이 같다.
 function createGenusDataPartially(overrides?: Partial<GenusData>): GenusData {
   return {
     family: 'unknown',
@@ -317,12 +322,13 @@ console.log(newGenusData);
 function createGenusData(overrides) {
   return Object.assign({ family: 'unknown', name: 'unknown' }, overrides);
 }
+
 function createGenusDataPartially(overrides) {
   return Object.assign({ family: 'unknown', name: 'unknown' }, overrides);
 }
 ```
 
-타입 스크립트는 제네릭 매핑된 타입을 즉시 사용할 수 있는 `Partial<T>` 라는 유틸리티 타입을 제공하는데
+타입 스크립트는 제네릭 매핑된 타입을 즉시 사용할 수 있는 `Partial<T>` 라는 유틸리티 타입을 제공한다.
 
 ---
 
@@ -338,7 +344,7 @@ function createGenusDataPartially(overrides) {
 LeftType extends RightType ? IfTrue : IfFalse
 ```
 
-`조건부 타입에서 논리적 검사는 항상 extends 의 왼쪽 타입이 오른쪽 타입이 되는지 또는 할당 가능한지 여부에 있다.`
+`**조건부 타입에서 논리적 검사는 항상 extends 의 왼쪽 타입이 오른쪽 타입이 되는지 또는 할당 가능한지 여부에 있다.**`
 
 ```tsx
 // 타입은 false
@@ -358,17 +364,22 @@ type CheckStringAgainstNumber = string extends number ? true : false;
 ```tsx
 type CheckStringAgainstNumber<T> = T extends number ? true : false;
 
+// string !== number
 // 타입은 false
 type CheckString = CheckStringAgainstNumber<'parakeet'>;
 
+// typeof 1891 === 'number'
 // 타입은 true
 type CheckString = CheckStringAgainstNumber<1891>;
 
+// number === number
 // 타입은 true
 type CheckString = CheckStringAgainstNumber<number>;
 ```
 
 ```tsx
+// 바뀌어야함
+
 type CallableSettings<T> =
   // 왼쪽 타입이 오른쪽 타입에 할당 가능하거나 |  같냐 를 검증
   T extends () => any ? T : () => T;
@@ -405,8 +416,8 @@ async function executes() {
   // throwIfNotFound 가 주어지지 않았기 때문에 string | undefined
   const birute = await retrieve('Biruté Galdikas');
 
-  // 타입은 string | undefined
-  // Math.random() > 0.5 에 의해 throwIfNotFound : false 가능성을 내재 하고 있으므로, string | undefined
+  // 타입은 string | undefined   string | undefined
+  // Math.random() > 0.5 에 의해 throwIfNotFound : false 가능성을 내재 하고 있으므로, 완전한 true가 아니기 때문에.
   const jane = await retrieve('Jane Goodal', {
     throwIfNotFound: Math.random() > 0.5,
   });
@@ -421,7 +432,7 @@ async function executes() {
 executes();
 ```
 
-조건부 타입을 제네릭 타입 매개변수와 결합하면 ㄷrtrieve 함수는 프로그램의 제어 흐름을 어떻게 변경할 것인지 타입 시스템에 더 정확히 알릴 수 있다.
+조건부 타입을 제네릭 타입 매개변수와 결합하면 retrieve 함수는 프로그램의 제어 흐름을 어떻게 변경할 것인지 타입 시스템에 더 정확히 알릴 수 있다.
 
 ---
 
@@ -538,14 +549,14 @@ type MemberFunctions = {
 
 `객체` 에서 `never` 와 `bottom` 타입을 보면 이들은 `가능한 값을 가질 수 없고, 접근 할 수 없음을 의미`
 
-올바른 위치에 `never` 타입 애너테이션을 추가하면 타입스크립트가 이전 런타임 예제 코드 뿐만 아니라 타입 시스템에서 맞지 않는 코드 경로를 좀더 공격적으로 탐지한다.
+올바른 위치에 `never` 타입 애너테이션을 추가하면 타입스크립트가 이전 런타임 예제 코드 뿐만 아니라 타입 시스템에서 맞지 않는 코드 경로를 좀더 `공격적으로 탐지`한다.
 
 ---
 
 ### `never 와 교차, 유니언 타입`
 
-- `교차 타입 ( & ) 에 있는 never 는 교차 타입을 never 로 만든다.`
-- `유니언 타입 ( | ) 에 있는 never 는 무시된다.`
+- `**교차 타입** ( & ) 에 있는 **never 는 교차 타입을 never** 로 만든다.`
+- `**유니언 타입** ( | ) 에 있는 **never 는 무시**된다.`
 
 ```tsx
 // 타입은 never
@@ -574,9 +585,9 @@ type RedOrBlue = OnlyStrings<'red' | 'blue' | 0 | false>;
 
 never 또한 제네릭 타입에 대한 타입 유틸리티를 만들 때 유추된 조건부 타입과 결합된다.
 
-`infer가 있는 타입 추론은 조건부 타입이 true 가 되어야 하므로 false 인 경우를 절대 사용하지 않아야 한다.`
+`**infer가 있는 타입 추론은 조건부 타입이 true 가 되어야 하므로 false 인 경우를 절대 사용하지 않아야 한다.**`
 
-`이때 never 가 적용 가능하다`
+`**이때 never 가 적용 가능하다**`
 
 ```tsx
 // infer 이 들어간 조건부 타입에 never 가 들어감으로 함수의 첫번째 매개변수 타입 추출 가능
@@ -602,7 +613,7 @@ type GetsString = FirstParameter<(arg0: string) => void>;
 - `매핑된 타입은 타입의 멤버를 매핑할 수 있다.`
 - `조건부 타입은 조건이 충족되는 경우 타입을 never 로 변환하는데 사용할 수 있다.`
 
-`세가지 기능을 사용하면 원래 타입의 각 메버를 원래 키 또는 never 타입으로 변경하는 매핑된 타입을 만들 수 있다.`
+`**세가지 기능을 사용하면 원래 타입의 각 멤버를 원래 키 또는 never 타입으로 변경하는 매핑된 타입을 만들 수 있다.` ( 조건에 충족하지 않다면 never 타입으로 변경 )\*\*
 
 ```tsx
 type OnlyStringProperties<T> = {
@@ -641,8 +652,8 @@ type EventDataWithNever = {
 
 문자열값을 입력하기 위한 두가지 전략
 
-- `원시 string 타입 : 값이 세상의 모든 문자열이 될 수 있는 경우`
-- `“” 와 “abc” 같은 리터럴 타입 : 값이 오직 한가지 타입만 될 수 있는 경우`
+- `**원시 string 타입** : 값이 세상의 모든 문자열이 될 수 있는 경우`
+- `**“” 와 “abc” 같은 리터럴 타입** : 값이 오직 한가지 타입만 될 수 있는 경우`
 
 경우에 따라 일부 문자열이 패턴과 일치함을 나타내고 싶을때 사용한다.
 
@@ -683,10 +694,10 @@ let colorWrongEnd: BrightnessAndColor = 'light-green';
 
 타입 스크립트는 문자열을 가져와 문자열의 일부 조작을 적용하는 고유 제네릭 유틸리티 타입을 제공한다.
 
-- `Uppercase : 문자열 리터럴 타입을 대문자로 변환`
-- `Lowercase : 문자열 리털럴 타입을 소문자로 변환`
-- `Capitalize : 문자열 리터럴 타입의 첫 번째 문자를 대문자로 변환`
-- `Uncapitalize : 문자열 리터럴 타입의 첫 번째 문자를 소문자로 변환`
+- `**Uppercase** : 문자열 리터럴 타입을 대문자로 변환`
+- `**Lowercase** : 문자열 리털럴 타입을 소문자로 변환`
+- `**Capitalize** : 문자열 리터럴 타입의 **첫 번째 문자**를 대문자로 변환`
+- `**Uncapitalize** : 문자열 리터럴 타입의 **첫 번째 문자**를 소문자로 변환`
 
 ```tsx
 // 타입은 Hello.
@@ -752,16 +763,16 @@ type DataEntryGetters = {
 
 `keyof typeof` 키워드를 사용해서 객체의 타입에서 매핑된 타입을 만드는 것도 가능하다
 
-```ts
+```
 const config = {
-  location: 'unknown',
-  name: 'anonymous',
-  year: 0,
+    location : 'unknown',
+    name : 'anonymous',
+    year : 0
 };
 
 type LazyValues = {
-  [K in keyof typeof config as `${K}Lazy`]: () => Promise<(typeof config)[K]>;
-};
+    [ K in keyof typeof config as `${K}Lazy`] : () => Promise<typeof config[K]>
+}
 
 // 다음과 같음
 
@@ -771,11 +782,12 @@ type LazyValues = {
 //     yearLazy: () => Promise<number>;
 // }
 
-async function withLazyValues(configGetter: LazyValues) {
-  await configGetter.locationLazy();
+async function withLazyValues(configGetter : LazyValues) {
+    await configGetter.locationLazy();
 
-  // 존재하지 않는 속성
-  await configGetter.missingLazy();
+    // 존재하지 않는 속성
+    ~~await configGetter.missingLazy();~~
+
 }
 ```
 
@@ -789,4 +801,4 @@ type TurnIntogettersDirect<T> = {
 };
 ```
 
-`이러한 제한 사항을 피하기 위해  string 과 교차타입 ( & ) 을 사용하여 문자열이 될 수 있는 타입만 사용하도록 강제한다.`
+`**이러한 제한 사항을 피하기 위해  string 과 교차타입 ( & ) 을 사용하여 문자열이 될 수 있는 타입만 사용하도록 강제한다.**`
